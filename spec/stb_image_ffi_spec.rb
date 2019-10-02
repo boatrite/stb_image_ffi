@@ -3,8 +3,8 @@ RSpec.describe STBImage do
     expect(STBImage::VERSION).not_to be nil
   end
 
-  describe '::stbi_load' do
-    it 'gets the image data' do
+  describe "::stbi_load" do
+    it "gets the image data" do
       file = File.join(__dir__, "./fixtures/test.jpg")
       width_ptr = " " * 8
       height_ptr = " " * 8
@@ -19,8 +19,8 @@ RSpec.describe STBImage do
     end
   end
 
-  describe '::stbi_set_flip_vertically_on_load' do
-    it 'returns the image data flipped vertically' do
+  describe "::stbi_set_flip_vertically_on_load" do
+    it "returns the image data flipped vertically" do
       STBImage.stbi_set_flip_vertically_on_load 1
       file = File.join(__dir__, "./fixtures/test.jpg")
       width_ptr = " " * 8
