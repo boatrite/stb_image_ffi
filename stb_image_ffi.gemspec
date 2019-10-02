@@ -5,13 +5,13 @@ require "stb_image_ffi/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "stb_image_ffi"
-  spec.version       = StbImageFfi::VERSION
+  spec.version       = STBImage::VERSION
   spec.authors       = ["Boatrite"]
   spec.email         = ["boatrite@mobiledoorman.com"]
 
   spec.summary       = %q{Bindings for stb_image, the single file image loading library}
   spec.description   = %q{Bindings for stb_image using Ruby-FFI}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/boatrite/stb_image_ffi"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
@@ -23,7 +23,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "ffi"
+
   spec.add_development_dependency "bundler", "~> 1.17"
+  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
 end

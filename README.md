@@ -1,8 +1,14 @@
-# StbImageFfi
+# STBImage
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stb_image_ffi`. To experiment with that code, run `bin/console` for an interactive prompt.
+Very naive bindings for `stb_image.h`. Implements only
+`stbi_set_flip_vertically_on_load` and `stb_load` since these are the
+2 functions I need to load an image as a texture in OpenGL.
 
-TODO: Delete this and the text above, and describe your gem
+The reason I made this instead of using
+[stb-image](https://rubygems.org/gems/stb-image) is because stb-image didn't
+implement `stbi_set_flip_vertically_on_load`, as far as I can tell, which is
+useful/necessary when wanting to load image data in a format immediately
+consumable by OpenGL (see [Example](#Example) down below).
 
 ## Installation
 
@@ -20,9 +26,25 @@ Or install it yourself as:
 
     $ gem install stb_image_ffi
 
-## Usage
+## Example
 
-TODO: Write usage instructions here
+```ruby
+STBImage.stbi_set_flip_vertically_on_load 1
+
+file = "image.jpg"
+width_ptr = " " * 8
+height_ptr = " " * 8
+channels_ptr = " " * 8
+desired_channels = 3
+ptr = STBImage.stbi_load(file, width_ptr, height_ptr, channels_ptr, desired_channels)
+width = width_ptr.unpack1 "L"
+height = height_ptr.unpack1 "L"
+channels = channels_ptr.unpack1 "L"
+data = ptr.get_bytes(0, width * height * channels)
+# ...
+glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8, width, height)
+glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, data)
+```
 
 ## Development
 
@@ -40,4 +62,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the StbImageFfi project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/boatrite/stb_image_ffi/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the STBImage project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/boatrite/stb_image_ffi/blob/master/CODE_OF_CONDUCT.md).
