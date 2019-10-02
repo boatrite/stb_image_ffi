@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stb_image_ffi (1.0.0)
+    stb_image_ffi (1.0.1)
       ffi
 
 GEM
