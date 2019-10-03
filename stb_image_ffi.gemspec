@@ -10,15 +10,9 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Bindings for stb_image, the single file image loading library"
   spec.description = <<~DESCRIPTION
-    Very naive bindings for `stb_image.h`. Implements only
-    `stbi_set_flip_vertically_on_load` and `stb_load` since these are the
-    2 functions I need to load an image as a texture in OpenGL.
+    Very naive bindings for stb_image.h. Implements only stbi_set_flip_vertically_on_load and stb_load since these are the 2 functions I need to load an image as a texture in OpenGL.
 
-    The reason I made this instead of using
-    [stb-image](https://rubygems.org/gems/stb-image) is because stb-image didn't
-    implement `stbi_set_flip_vertically_on_load`, as far as I can tell, which is
-    useful/necessary when wanting to load image data in a format immediately
-    consumable by OpenGL (see Example in README).
+    The reason I made this instead of using stb-image is because stb-image didn't implement stbi_set_flip_vertically_on_load, as far as I can tell, which is useful/necessary when wanting to load image data in a format immediately consumable by OpenGL (see Example in README).
   DESCRIPTION
   spec.homepage = "https://github.com/boatrite/stb_image_ffi"
   spec.license = "MIT"
